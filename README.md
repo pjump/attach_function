@@ -8,34 +8,35 @@ the user-specified name is not the same as the basename of the target function, 
 if the user-specified name is the same as the basename of the parameter.
 
 ## Usage Example: 
+```ruby
+require 'attach_function'
 
-    require 'attach_function'
+module Math
 
-    module Math
-
-      #This will contain the method versions of the functions defined in the Math module
-      module MethodVersions
-        #Get the attach_function macro
-        extend AttachFunction
-        #Apply it to all methods of the Math module that aren't Object methods
-        (Math.methods - Object.methods).each do |m|
-          puts "Attaching #{m}"
-          attach_function m
-        end
-      end
+  #This will contain the method versions of the functions defined in the Math module
+  module MethodVersions
+    #Get the attach_function macro
+    extend AttachFunction
+    #Apply it to all methods of the Math module that aren't Object methods
+    (Math.methods - Object.methods).each do |m|
+      puts "Attaching #{m}"
+      attach_function m
     end
+  end
+end
 
-    #Now we include the Math::MethodVersions in Numeric
-    Numeric.include(Math::MethodVersions)
-    #And now we can do this:
-    p "3.14.sin = #{3.14.sin}"
-    p "10.log  = #{10.log10}"
-    p "4.sqrt  = #{4.sqrt}"
+#Now we include the Math::MethodVersions in Numeric
+Numeric.include(Math::MethodVersions)
+#And now we can do this:
+p "3.14.sin = #{3.14.sin}"
+p "10.log  = #{10.log10}"
+p "4.sqrt  = #{4.sqrt}"
+```
 
-    #The functionality that has been added to Numeric in this way is contained in the Math::MethodVersions mixin.
-    #I consider this much nicer than rudely monkepatching methods right onto a core class.
-    #This way, library users can see (in pry, for example, or via introspection) where a certain added method came from, and possibly filter it out.
-    #(Ruby doesn't currently support unmixing).
+#The functionality that has been added to Numeric in this way is contained in the Math::MethodVersions mixin.
+#I consider this much nicer than rudely monkepatching methods right onto a core class.
+#This way, library users can see (in pry, for example, or via introspection) where a certain added method came from, and possibly filter it out.
+#(Ruby doesn't currently support unmixing).
 
    
 See the specs and the example folder for more examples.

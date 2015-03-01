@@ -13,8 +13,8 @@ Gem::Specification.new do |spec|
 
   spec.name          = gem.name
   spec.version       = (gem.module)::VERSION
-  spec.summary       = %q{True in-place file-editing}
-  spec.description   = %q{True in-place file-editing (i.e, inode(input) == inode(output)) like with sed, awk, or `ruby i -{p|n}e`, but truly in-place}
+  spec.summary       = %q{Macro to attach a module function to an object by fixing its first argument to self}
+  spec.description   = %q{Macro to attach a module function to an object by fixing its first argument to self}
 
   spec.authors       = ["Petr Skocik"]
   spec.email         = ["pskocik@gmail.com"]
