@@ -31,15 +31,17 @@ Numeric.include(Math::MethodVersions)
 p "3.14.sin = #{3.14.sin}"
 p "10.log  = #{10.log10}"
 p "4.sqrt  = #{4.sqrt}"
-```
 
 #The functionality that has been added to Numeric in this way is contained in the Math::MethodVersions mixin.
 #I consider this much nicer than rudely monkepatching methods right onto a core class.
 #This way, library users can see (in pry, for example, or via introspection) where a certain added method came from, and possibly filter it out.
 #(Ruby doesn't currently support unmixing).
 
+```
+
    
 See the specs and the example folder for more examples.
+
 ## Installation
 
 Add this line to your application's Gemfile:
