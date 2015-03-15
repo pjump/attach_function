@@ -27,6 +27,21 @@ describe AttachFunction do
   it 'has a version number' do
     expect(AttachFunction::VERSION).not_to be nil
   end
+  describe "#_outer_module_name" do
+    extend AttachFunction
+    {
+      '::A::M' => "::A",
+      'A::m' => "::A",
+      '::A::B::M' => "::A::B",
+      '::A' => "::Object",
+      'A' => "::Object"
+    }.each_pair do |k,answers|
+        it "should resolve #{k} to #{answers.inspect}" do
+          extend AttachFunction
+          expect(outer_module_name(k)).to eq(answers)
+        end
+    end
+  end
   it "should define an instance method named 'attach_function'" do
     expect(subject.instance_methods(false)).to include(:attach_function)
   end
