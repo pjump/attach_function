@@ -64,7 +64,7 @@ module AttachFunction
 
   #Attaches all uninherited (by default, pass true to change that) public class methods
   #of the enclosing module or of Object
-  def attach_outer_class_methods(inherited = false)
+  def attach_outer_class_methods!(inherited = false)
     outer_module = Object.const_get(outer_module_name(name))
     outer_module.methods(inherited).each do |m|
       attach_function m
